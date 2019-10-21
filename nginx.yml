@@ -1,0 +1,8 @@
+---
+- name: Deploy to Nginx Server
+   hosts: 
+     - webservers
+   roles:
+     - nginx
+   become: true
+   remote_user: root
