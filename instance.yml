@@ -1,0 +1,27 @@
+WSTemplateFormatVersion: "2010-09-09"  
+Resources:  
+  WebInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      BlockDeviceMappings:
+        -
+          DeviceName: "/dev/sda1"
+          Ebs:
+            VolumeSize: 10
+            VolumeType: gp2
+        -
+          DeviceName: "/dev/sdf"
+          Ebs:
+            VolumeSize: 10
+            VolumeType: gp2
+      InstanceType: t2.small
+      ImageId: ami-0cb0e70f44e1a4bb5
+      KeyName: mumbai-key
+      SecurityGroupIds:
+        - sg-0d9b2b90088aa28fc
+      SubnetId: subnet-4e715326
+    WebElasticIp:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref WebInstance
+      Domain: vpc
